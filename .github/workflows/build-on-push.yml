@@ -1,0 +1,48 @@
+name: Build and Deploy Client to Builds Branch 🚀
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'ArgusCord/**'
+      - '.github/workflows/build-on-push.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code 📥
+        uses: actions/checkout@v4
+
+      - name: Install Node.js 🟢
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm 📦
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: Install Dependencies 🛠️
+        run: |
+          cd ArgusCord
+          pnpm install --no-frozen-lockfile
+
+      - name: Build Standalone Client 🏗️
+        run: |
+          cd ArgusCord
+          pnpm buildStandalone
+
+      - name: Deploy to builds branch 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: builds
+          folder: ArgusCord/dist
+          clean: true

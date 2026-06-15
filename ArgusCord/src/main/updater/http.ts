@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
+ */
 
 import { fetchBuffer, fetchJson } from "@main/utils/http";
 import { IpcEvents } from "@shared/IpcEvents";
@@ -26,7 +26,7 @@ import { join } from "path";
 import gitHash from "~git-hash";
 import gitRemote from "~git-remote";
 
-import { serializeErrors, ARGUSCORD_FILES } from "./common";
+import { serializeErrors } from "./common";
 
 const API_BASE = `https://api.github.com/repos/${gitRemote}`;
 let PendingUpdates = [] as [string, string][];
@@ -35,44 +35,59 @@ async function githubGet<T = any>(endpoint: string) {
     return fetchJson<T>(API_BASE + endpoint, {
         headers: {
             Accept: "application/vnd.github+json",
-            // "All API requests MUST include a valid User-Agent header.
-            // Requests with no User-Agent header will be rejected."
             "User-Agent": ARGUSCORD_USER_AGENT
         }
     });
 }
 
 async function calculateGitChanges() {
-    const isOutdated = await fetchUpdates();
-    if (!isOutdated) return [];
+    try {
+        const isOutdated = await fetchUpdates();
+        if (!isOutdated) return [];
 
-    const data = await githubGet(`/compare/${gitHash}...HEAD`);
+        const data = await githubGet(`/compare/${gitHash}...builds`);
 
-    return data.commits.map((c: any) => ({
-        // github api only sends the long sha
-        hash: c.sha.slice(0, 7),
-        author: c.author.login,
-        message: c.commit.message.split("\n")[0]
-    }));
+        return data.commits.map((c: any) => ({
+            hash: c.sha.slice(0, 7),
+            author: c.author?.login || c.commit.author.name,
+            message: c.commit.message.split("\n")[0]
+        }));
+    } catch (e) {
+        console.error("[ArgusCord Updater] Failed to calculate changes:", e);
+        return [];
+    }
 }
 
 async function fetchUpdates() {
-    const data = await githubGet("/releases/latest");
-
-    const hash = data.name.slice(data.name.lastIndexOf(" ") + 1);
-    if (hash === gitHash)
-        return false;
-
-    data.assets.forEach(({ name, browser_download_url }) => {
-        if (ARGUSCORD_FILES.some(s => name.startsWith(s))) {
-            PendingUpdates.push([name, browser_download_url]);
+    try {
+        const data = await githubGet("/commits/builds");
+        if (!data || !data.sha) {
+            console.error("[ArgusCord Updater] Failed to get latest builds commit. Response:", data);
+            return false;
         }
-    });
 
-    return true;
+        const latestHash = data.sha.slice(0, 7);
+        if (latestHash === gitHash) {
+            return false;
+        }
+
+        PendingUpdates = [
+            ["patcher.js", `https://raw.githubusercontent.com/${gitRemote}/builds/patcher.js`],
+            ["preload.js", `https://raw.githubusercontent.com/${gitRemote}/builds/preload.js`],
+            ["renderer.js", `https://raw.githubusercontent.com/${gitRemote}/builds/renderer.js`],
+            ["renderer.css", `https://raw.githubusercontent.com/${gitRemote}/builds/renderer.css`]
+        ];
+
+        return true;
+    } catch (e) {
+        console.error("[ArgusCord Updater] Failed to check updates:", e);
+        return false;
+    }
 }
 
 async function applyUpdates() {
+    if (PendingUpdates.length === 0) return false;
+
     const fileContents = await Promise.all(PendingUpdates.map(async ([name, url]) => {
         const contents = await fetchBuffer(url);
         return [join(__dirname, name), contents] as const;
