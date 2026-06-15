@@ -1,0 +1,174 @@
+/**
+ * @name ArgusCord Neon Midnight
+ * @author ar4us
+ * @version 1.0.0
+ * @description A premium, glowing neon-violet glassmorphic theme for Discord, matching the ArgusCord brand aesthetic.
+ * @source https://github.com/ar4us/ArgusCord
+ * @website https://argus-cord.vercel.app/
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Font Family override */
+  --font-primary: 'Outfit', 'GG Sans', 'Noto Sans', sans-serif;
+  --font-display: 'Outfit', 'GG Sans', 'Noto Sans', sans-serif;
+
+  /* Theme Core Colors */
+  --bg-midnight: #08040f;
+  --bg-panel: rgba(18, 10, 31, 0.65);
+  --bg-panel-dark: rgba(10, 5, 18, 0.85);
+  --accent-violet: #9d4edd;
+  --accent-violet-glow: rgba(157, 78, 221, 0.6);
+  --accent-violet-dim: rgba(157, 78, 221, 0.25);
+  --text-normal: #e0d6f2;
+  --text-muted: #8b7ca6;
+  --text-link: #c77dff;
+
+  /* Discord System Variables Overrides */
+  --background-primary: var(--bg-midnight);
+  --background-secondary: var(--bg-panel);
+  --background-secondary-alt: var(--bg-panel-dark);
+  --background-tertiary: #05020a;
+  --background-accent: var(--accent-violet-dim);
+  --background-floating: var(--bg-panel-dark);
+  
+  --brand-experiment: var(--accent-violet);
+  --brand-experiment-500: var(--accent-violet);
+  --brand-experiment-600: #7b2cbf;
+  --brand-experiment-300: #e0aaff;
+  --control-brand-foreground: var(--accent-violet);
+
+  --text-link-low-saturation: var(--text-link);
+  --background-modifier-selected: var(--accent-violet-dim);
+  --background-modifier-hover: rgba(157, 78, 221, 0.12);
+  --background-modifier-active: rgba(157, 78, 221, 0.2);
+
+  --scrollbar-thin-thumb: var(--accent-violet);
+  --scrollbar-thin-track: transparent;
+  --scrollbar-auto-thumb: var(--accent-violet);
+  --scrollbar-auto-track: transparent;
+}
+
+/* Glassmorphism & Translucency Panels */
+.theme-dark .container_e40c16, 
+.theme-dark .sidebar_a4d4d9, 
+.theme-dark .panels_a4d4d9 {
+  background: var(--bg-panel) !important;
+  backdrop-filter: blur(12px);
+}
+
+.theme-dark .chatContent_a7d72e, 
+.theme-dark .container_c2654d {
+  background: var(--bg-midnight) !important;
+}
+
+/* Custom Glowing Scrollbars */
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-violet) !important;
+  border-radius: 4px !important;
+  border: 2px solid transparent !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+
+/* Channel List Enhancements */
+.channelName_d8bfb3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+}
+
+.wrapper_d8bfb3:hover .channelName_d8bfb3 {
+  color: #fff !important;
+  text-shadow: 0 0 8px var(--accent-violet-glow);
+}
+
+.wrapper_d8bfb3.modeSelected_d8bfb3 .channelName_d8bfb3 {
+  color: #fff !important;
+  font-weight: 700;
+}
+
+/* Chat Input Bar Glowing Borders */
+.scrollableContainer_d0696b {
+  background-color: rgba(18, 10, 31, 0.8) !important;
+  border: 1px solid rgba(157, 78, 221, 0.2);
+  transition: border-color 0.25s, box-shadow 0.25s;
+  border-radius: 8px;
+}
+
+.scrollableContainer_d0696b:focus-within {
+  border-color: var(--accent-violet) !important;
+  box-shadow: 0 0 10px var(--accent-violet-glow) !important;
+}
+
+/* Server List Glowing Badges & Indicators */
+.item_c4b11f {
+  background-color: var(--accent-violet) !important;
+  box-shadow: 0 0 8px var(--accent-violet-glow);
+}
+
+.unreadBadge_c4b11f {
+  background-color: var(--accent-violet) !important;
+  box-shadow: 0 0 8px var(--accent-violet-glow);
+  animation: badgePulse 2s infinite;
+}
+
+/* Mention Pill Badge Pulse */
+.mention_b20aa1 {
+  background-color: var(--accent-violet) !important;
+  box-shadow: 0 0 8px var(--accent-violet-glow);
+}
+
+@keyframes badgePulse {
+  0% {
+    box-shadow: 0 0 4px var(--accent-violet-glow);
+  }
+  50% {
+    box-shadow: 0 0 12px var(--accent-violet);
+  }
+  100% {
+    box-shadow: 0 0 4px var(--accent-violet-glow);
+  }
+}
+
+/* User profile card midnight violet style */
+.userPopoutOuter_c51b4e {
+  background: var(--bg-panel-dark) !important;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  box-shadow: 0 8px 32px rgba(5, 2, 10, 0.8), 0 0 15px rgba(157, 78, 221, 0.15) !important;
+}
+
+.inner_c51b4e {
+  background: transparent !important;
+}
+
+/* Top search bar custom theme */
+.searchBar_a4d4d9 {
+  background-color: rgba(5, 2, 10, 0.6) !important;
+  border: 1px solid rgba(157, 78, 221, 0.15);
+}
+
+.searchBar_f0963d {
+  background-color: rgba(5, 2, 10, 0.6) !important;
+}
+
+/* Settings modal overrides */
+.standardSidebarView_c25c6d {
+  background: var(--bg-midnight) !important;
+}
+
+.sidebarRegionScroller_c25c6d {
+  background: var(--bg-panel) !important;
+}
+
+.contentRegion_c25c6d, .contentRegionScroller_c25c6d {
+  background: var(--bg-midnight) !important;
+}
+
+/* Nitro badge and features highlighting */
+.premiumIcon_d8bfb3 {
+  color: var(--accent-violet) !important;
+}

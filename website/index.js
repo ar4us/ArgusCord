@@ -55,3 +55,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("ArgusCord Landing Page initialized.");
 });
+
+window.copyThemeUrl = function() {
+    const text = document.getElementById("theme-url-text").innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        const msg = document.getElementById("copy-success-msg");
+        if (msg) {
+            msg.style.display = "inline";
+            setTimeout(() => {
+                msg.style.display = "none";
+            }, 3000);
+        }
+    });
+};
