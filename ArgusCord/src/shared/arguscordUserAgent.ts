@@ -1,0 +1,12 @@
+/*
+ * ArgusCord, a Discord client mod
+ * Copyright (c) 2024 ar4us and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+import gitHash from "~git-hash";
+import gitRemote from "~git-remote";
+
+export { gitHash, gitRemote };
+
+export const ARGUSCORD_USER_AGENT = `ArgusCord/${gitHash}${gitRemote ? ` (https://github.com/${gitRemote})` : ""}`;

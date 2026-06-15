@@ -1,0 +1,49 @@
+{
+    "manifest_version": 2,
+    "minimum_chrome_version": "91",
+
+    "name": "ArgusCord Web",
+    "description": "The cutest Discord mod now in your browser",
+    "author": "ar4us",
+    "homepage_url": "https://github.com/ar4us/ArgusCord",
+    "icons": {
+        "128": "icon.png"
+    },
+
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "*://*.discord.com/*",
+        "https://raw.githubusercontent.com/*"
+    ],
+
+    "content_scripts": [
+        {
+            "run_at": "document_start",
+            "matches": ["*://*.discord.com/*"],
+            "js": ["content.js"],
+            "all_frames": true,
+            "world": "ISOLATED"
+        },
+        {
+            "run_at": "document_start",
+            "matches": ["*://*.discord.com/*"],
+            "js": ["dist/ArgusCord.js"],
+            "all_frames": true,
+            "world": "MAIN"
+        }
+    ],
+
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "web_accessible_resources": ["dist/ArgusCord.js", "dist/ArgusCord.css"],
+
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "arguscord-firefox@ar4us.dev",
+            "strict_min_version": "128.0"
+        }
+    }
+}
