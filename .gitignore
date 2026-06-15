@@ -1,0 +1,23 @@
+# User Files & Local Configurations
+.gemini/
+.idea/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build Outputs
+**/bin/
+**/obj/
+**/dist/
+**/node_modules/
+**/out/
+
+# Large installer binary (avoiding GitHub 100MB limit - host via GitHub Releases instead)
+ArgusCordInstaller.exe
+website/downloads/ArgusCordInstaller.exe
+
+# Temp files
+*.log
+*.tmp

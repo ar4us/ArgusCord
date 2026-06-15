@@ -1,0 +1,62 @@
+/* ArgusCord Premium Default Theme */
+:root {
+    /* Brand color overrides - neon violet */
+    --brand-experiment: #8b5cf6 !important;
+    --brand-experiment-500: #8b5cf6 !important;
+    --brand-experiment-560: #7c3aed !important;
+    --brand-experiment-600: #6d28d9 !important;
+    --brand-experiment-360: #a78bfa !important;
+    
+    /* Background colors - sleek midnight deep dark purple */
+    --background-primary: #0b0813 !important;
+    --background-secondary: #06040a !important;
+    --background-secondary-alt: #040307 !important;
+    --background-tertiary: #030205 !important;
+    --background-floating: #0e0a1a !important;
+    --background-nested-landings: #050308 !important;
+    --background-modifier-selected: rgba(139, 92, 246, 0.15) !important;
+    --background-modifier-hover: rgba(139, 92, 246, 0.08) !important;
+    --background-modifier-active: rgba(139, 92, 246, 0.2) !important;
+    
+    /* Text link colors */
+    --text-link: #c084fc !important;
+    --text-warning: #fbbf24 !important;
+    --text-danger: #f87171 !important;
+    
+    /* UI styling tweaks */
+    --button-primary-background: #8b5cf6 !important;
+    --button-primary-background-hover: #7c3aed !important;
+    --button-primary-background-active: #6d28d9 !important;
+    
+    --button-secondary-background: rgba(139, 92, 246, 0.1) !important;
+    --button-secondary-background-hover: rgba(139, 92, 246, 0.2) !important;
+    --button-secondary-background-active: rgba(139, 92, 246, 0.3) !important;
+    
+    /* Interactive colors */
+    --interactive-normal: #9ca3af !important;
+    --interactive-hover: #e5e7eb !important;
+    --interactive-active: #ffffff !important;
+    --interactive-muted: #4b5563 !important;
+}
+
+/* Custom glowing indicators */
+[class*="guilds_"] [class*="item_"] {
+    background-color: #8b5cf6 !important;
+    box-shadow: 0 0 8px #8b5cf6;
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.4) !important;
+    border-radius: 3px !important;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.7) !important;
+}
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
