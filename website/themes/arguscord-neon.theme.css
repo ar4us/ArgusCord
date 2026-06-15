@@ -1,174 +1,103 @@
 /**
- * @name ArgusCord Neon Midnight
+ * @name ArgusCord ClearVision Neon
  * @author ar4us
  * @version 1.0.0
- * @description A premium, glowing neon-violet glassmorphic theme for Discord, matching the ArgusCord brand aesthetic.
+ * @description A premium, glowing neon-violet glassmorphic theme for Discord, based on ClearVision V7 and tailored to the ArgusCord aesthetic.
  * @source https://github.com/ar4us/ArgusCord
  * @website https://argus-cord.vercel.app/
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+/* IMPORT CLEARVISION CORE */
+@import url("https://clearvision.github.io/ClearVision-v7/main.css");
+@import url("https://clearvision.github.io/ClearVision-v7/betterdiscord.css");
 
+/* CUSTOM VARIABLES OVERRIDES */
 :root {
-  /* Font Family override */
-  --font-primary: 'Outfit', 'GG Sans', 'Noto Sans', sans-serif;
-  --font-display: 'Outfit', 'GG Sans', 'Noto Sans', sans-serif;
-
-  /* Theme Core Colors */
-  --bg-midnight: #08040f;
-  --bg-panel: rgba(18, 10, 31, 0.65);
-  --bg-panel-dark: rgba(10, 5, 18, 0.85);
-  --accent-violet: #9d4edd;
-  --accent-violet-glow: rgba(157, 78, 221, 0.6);
-  --accent-violet-dim: rgba(157, 78, 221, 0.25);
-  --text-normal: #e0d6f2;
-  --text-muted: #8b7ca6;
-  --text-link: #c77dff;
-
-  /* Discord System Variables Overrides */
-  --background-primary: var(--bg-midnight);
-  --background-secondary: var(--bg-panel);
-  --background-secondary-alt: var(--bg-panel-dark);
-  --background-tertiary: #05020a;
-  --background-accent: var(--accent-violet-dim);
-  --background-floating: var(--bg-panel-dark);
+  /* ACCENT COLORS */
+  --main-color: #9d4edd; /* main accent color (hex, rgb or hsl) [default: #2780e6] */
+  --hover-color: #7b2cbf; /* hover accent color (hex, rgb or hsl) [default: #1e63b3] */
+  --success-color: #43b581; /* positive accent color (hex, rgb or hsl) [default: #43b581] */
+  --danger-color: #e63946; /* danger accent color (hex, rgb or hsl) [default: #982929] */
   
-  --brand-experiment: var(--accent-violet);
-  --brand-experiment-500: var(--accent-violet);
-  --brand-experiment-600: #7b2cbf;
-  --brand-experiment-300: #e0aaff;
-  --control-brand-foreground: var(--accent-violet);
-
-  --text-link-low-saturation: var(--text-link);
-  --background-modifier-selected: var(--accent-violet-dim);
-  --background-modifier-hover: rgba(157, 78, 221, 0.12);
-  --background-modifier-active: rgba(157, 78, 221, 0.2);
-
-  --scrollbar-thin-thumb: var(--accent-violet);
-  --scrollbar-thin-track: transparent;
-  --scrollbar-auto-thumb: var(--accent-violet);
-  --scrollbar-auto-track: transparent;
+  /* STATUS COLORS */
+  --online-color: #38b000; /* online status color (hex, rgb or hsl) [default: #43b581] */
+  --idle-color: #faa61a; /* idle status color (hex, rgb or hsl) [default: #faa61a] */
+  --dnd-color: #e63946; /* dnd status color (hex, rgb or hsl) [default: #982929] */
+  --streaming-color: #7b2cbf; /* streaming status color (hex, rgb or hsl) [default: #593695] */
+  --offline-color: #706b78; /* offline/invisible status color (hex, rgb or hsl) [default: #808080] */
+  
+  /* APP BACKGROUND */
+  --background-shading-percent: 75%; /* app background shading amount (0 for complete smoothness) [default: 100%] */
+  --background-image: url(https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920&auto=format&fit=crop); /* app background image (link must be HTTPS) */
+  --background-position: center; /* app background position [default: center] */
+  --background-size: cover; /* app background size (px) [default: cover] */
+  --background-attachment: fixed; /* app background attachment [default: fixed] */
+  --background-filter: saturate(calc(var(--saturation-factor, 1) * 1.05)) brightness(0.9); /* app background adjustments */
+  
+  /* USER POPOUT BACKGROUND */
+  --user-popout-image: var(--background-image); /* user popout background image */
+  --user-popout-position: var(--background-position);
+  --user-popout-size: var(--background-size);
+  --user-popout-attachment: var(--background-attachment);
+  --user-popout-filter: blur(5px) saturate(calc(var(--saturation-factor, 1) * 1)) brightness(0.85); /* user popout background adjustments */
+  
+  /* USER MODAL BACKGROUND */
+  --user-modal-image: var(--background-image); /* user modal background image */
+  --user-modal-position: var(--background-position);
+  --user-modal-size: var(--background-size);
+  --user-modal-attachment: var(--background-attachment);
+  --user-modal-filter: blur(8px) saturate(calc(var(--saturation-factor, 1) * 1)) brightness(0.8); /* user modal background adjustments */
+  
+  /* HOME ICON */
+  --home-icon: url(https://raw.githubusercontent.com/ar4us/ArgusCord/main/assets/logo.png); /* home button icon - our custom AC logo! */
+  --home-size: 80% center no-repeat; /* home button icon size */
+  
+  /* FONTS */
+  --main-font: "Outfit", "gg sans", "Helvetica Neue", Helvetica, Arial, sans-serif; /* main font for app */
+  --code-font: Consolas, "gg mono", "Liberation Mono", Menlo, Courier, monospace; /* font for codeblocks */
+  
+  /* CHANNEL COLORS */
+  --channel-normal: #aeaeb4; /* channel text color */
+  --channel-muted: #5e5866; /* muted channel text color */
+  --channel-hover: #ffffff; /* hovered channel text color */
+  --channel-selected: #ffffff; /* selected channel text color */
+  --channel-selected-bg: var(--main-color); /* selected channel background */
+  --channel-unread: var(--main-color); /* unread channel text color */
+  --channel-unread-hover: var(--hover-color); /* unread channel hover color */
+  
+  /* ACCESSIBILITY */
+  --focus-color: var(--main-color); /* outline when pressing TAB key */
 }
 
-/* Glassmorphism & Translucency Panels */
-.theme-dark .container_e40c16, 
-.theme-dark .sidebar_a4d4d9, 
-.theme-dark .panels_a4d4d9 {
-  background: var(--bg-panel) !important;
-  backdrop-filter: blur(12px);
+/* THEME SPECIFIC SHADING (ONYX THEME FOR DEEP PURPLE/MIDNIGHT SHADING) */
+:is(.theme-dark, .theme-light, .theme-midnight) {
+  --background-shading: rgba(8, 4, 15, 0.65); /* app background shading color */
+  --card-shading: rgba(18, 10, 31, 0.55); /* cards background shading color */
+  --popout-shading: rgba(10, 5, 18, 0.85); /* popouts background shading color */
+  --modal-shading: rgba(5, 2, 10, 0.85); /* modals background shading color */
+  --input-shading: rgba(18, 10, 31, 0.7); /* inputs background shading color */
+  --normal-text: #e0d6f2; /* text color */
+  --muted-text: #8b7ca6; /* muted text color */
 }
 
-.theme-dark .chatContent_a7d72e, 
-.theme-dark .container_c2654d {
-  background: var(--bg-midnight) !important;
-}
-
-/* Custom Glowing Scrollbars */
-::-webkit-scrollbar-thumb {
-  background-color: var(--accent-violet) !important;
-  border-radius: 4px !important;
-  border: 2px solid transparent !important;
-}
-
-::-webkit-scrollbar-track {
-  background-color: transparent !important;
-}
-
-/* Channel List Enhancements */
-.channelName_d8bfb3 {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 500;
-}
-
-.wrapper_d8bfb3:hover .channelName_d8bfb3 {
-  color: #fff !important;
-  text-shadow: 0 0 8px var(--accent-violet-glow);
-}
-
-.wrapper_d8bfb3.modeSelected_d8bfb3 .channelName_d8bfb3 {
-  color: #fff !important;
-  font-weight: 700;
-}
-
-/* Chat Input Bar Glowing Borders */
+/* ADDITIONAL CSS FOR PREMIUM GLOWS & CUSTOM LOOKS */
 .scrollableContainer_d0696b {
-  background-color: rgba(18, 10, 31, 0.8) !important;
   border: 1px solid rgba(157, 78, 221, 0.2);
   transition: border-color 0.25s, box-shadow 0.25s;
-  border-radius: 8px;
 }
 
 .scrollableContainer_d0696b:focus-within {
-  border-color: var(--accent-violet) !important;
-  box-shadow: 0 0 10px var(--accent-violet-glow) !important;
+  border-color: var(--main-color) !important;
+  box-shadow: 0 0 10px var(--main-color) !important;
 }
 
-/* Server List Glowing Badges & Indicators */
-.item_c4b11f {
-  background-color: var(--accent-violet) !important;
-  box-shadow: 0 0 8px var(--accent-violet-glow);
+/* Unread Badge neon violet glow */
+.unreadBadge_c4b11f, .mention_b20aa1 {
+  background-color: var(--main-color) !important;
+  box-shadow: 0 0 8px rgba(157, 78, 221, 0.8) !important;
 }
 
-.unreadBadge_c4b11f {
-  background-color: var(--accent-violet) !important;
-  box-shadow: 0 0 8px var(--accent-violet-glow);
-  animation: badgePulse 2s infinite;
-}
-
-/* Mention Pill Badge Pulse */
-.mention_b20aa1 {
-  background-color: var(--accent-violet) !important;
-  box-shadow: 0 0 8px var(--accent-violet-glow);
-}
-
-@keyframes badgePulse {
-  0% {
-    box-shadow: 0 0 4px var(--accent-violet-glow);
-  }
-  50% {
-    box-shadow: 0 0 12px var(--accent-violet);
-  }
-  100% {
-    box-shadow: 0 0 4px var(--accent-violet-glow);
-  }
-}
-
-/* User profile card midnight violet style */
-.userPopoutOuter_c51b4e {
-  background: var(--bg-panel-dark) !important;
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(157, 78, 221, 0.3);
-  box-shadow: 0 8px 32px rgba(5, 2, 10, 0.8), 0 0 15px rgba(157, 78, 221, 0.15) !important;
-}
-
-.inner_c51b4e {
-  background: transparent !important;
-}
-
-/* Top search bar custom theme */
-.searchBar_a4d4d9 {
-  background-color: rgba(5, 2, 10, 0.6) !important;
-  border: 1px solid rgba(157, 78, 221, 0.15);
-}
-
-.searchBar_f0963d {
-  background-color: rgba(5, 2, 10, 0.6) !important;
-}
-
-/* Settings modal overrides */
-.standardSidebarView_c25c6d {
-  background: var(--bg-midnight) !important;
-}
-
-.sidebarRegionScroller_c25c6d {
-  background: var(--bg-panel) !important;
-}
-
-.contentRegion_c25c6d, .contentRegionScroller_c25c6d {
-  background: var(--bg-midnight) !important;
-}
-
-/* Nitro badge and features highlighting */
-.premiumIcon_d8bfb3 {
-  color: var(--accent-violet) !important;
+/* Home button logo hover pulse */
+.homeButton-1UP68K:hover {
+  filter: drop-shadow(0 0 8px rgba(157, 78, 221, 0.8));
 }
