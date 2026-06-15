@@ -9,6 +9,11 @@
 </p>
 
 <p align="center">
+  <a href="https://argus-cord.vercel.app/"><strong>🌐 Visit Official Website</strong></a> |
+  <a href="https://github.com/ar4us/ArgusCord/releases/latest/download/ArgusCordInstaller.exe"><strong>📥 Download Installer (.exe)</strong></a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/License-GPL--3.0-blueviolet?style=for-the-badge" alt="GPL 3.0 License" />
   <img src="https://img.shields.io/badge/Platform-Windows-0078d7?style=for-the-badge&logo=windows&logoColor=white" alt="Windows Platform" />
   <img src="https://img.shields.io/badge/Made%20With-TypeScript%20%26%20C%23-violet?style=for-the-badge" alt="Tech Stack" />
@@ -46,34 +51,15 @@
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started (Installation)
 
-### 1. Launching the GUI Installer
-To patch and run ArgusCord on your local Discord installation:
-* Open the workspace and launch `ArgusCordInstaller.exe` (or build it from `ArgusCordInstaller/`).
-* Choose your Discord branch (Stable, PTB, Canary) and click **Install**.
-* The installer will automatically inject the client code into your Discord directory.
+To patch and run ArgusCord on your Windows PC:
 
-### 2. Website Setup (Local Test)
-To run the bilingual landing page locally:
-1. Navigate to the `website/` directory.
-2. Run a simple static web server:
-   ```bash
-   npx http-server -p 8000
-   ```
-3. Open `http://127.0.0.1:8000` in your browser.
-
-### 3. Client Development
-To modify or add plugins to the client:
-1. Go to the `ArgusCord/` folder.
-2. Install dependencies:
-   ```bash
-   pnpm install
-   ```
-3. Run compiler in development mode:
-   ```bash
-   pnpm dev
-   ```
+1. Download the latest installer from our [GitHub Releases](https://github.com/ar4us/ArgusCord/releases/latest/download/ArgusCordInstaller.exe) or visit our [Official Website](https://argus-cord.vercel.app/).
+2. Run `ArgusCordInstaller.exe` (no installation required, works 100% offline).
+3. Select your Discord branch (Stable, PTB, or Canary).
+4. Click **Install**.
+5. Restart Discord to enjoy a premium, trackers-free experience!
 
 ---
 
