@@ -1,47 +1,41 @@
-# ArgusCord Client Modification
+<p align="center">
+  <img src="../assets/logo.png" alt="ArgusCord Logo" width="120px" />
+</p>
 
-ArgusCord is a fast, lightweight, next-generation client modification for Discord designed for performance, customization, and privacy.
+<h1 align="center">🔮 ArgusCord Client</h1>
 
----
-
-## Features
-
-*   **Fast & Lightweight:** Optimized codebase that runs smoothly alongside Discord.
-*   **100+ Built-in Plugins:** Toggle utility plugins instantly (Spotify Controls, deleted message logs, volume booster, and more).
-*   **Theme Support:** Built-in CSS editor with support for custom CSS themes and layouts.
-*   **Privacy-Friendly:** Blocks Discord's internal tracking, telemetry, and crash reports.
-*   **Local Settings Sync:** Save and load your configurations easily.
+<p align="center">
+  <strong>The client-side modification codebase for ArgusCord, written in TypeScript and React.</strong>
+</p>
 
 ---
 
-## Development
+## 🚀 Development
 
-ArgusCord uses `pnpm` for package management.
+ArgusCord uses `pnpm` for workspace package management.
 
 ### Prerequisites
 
-*   [Node.js](https://nodejs.org/) (>= 18)
-*   [pnpm](https://pnpm.io/)
+* [Node.js](https://nodejs.org/) (>= 18)
+* [pnpm](https://pnpm.io/)
 
 ### Installation
 
-Install dependencies:
+To install all workspace dependencies:
 ```bash
 pnpm install
 ```
 
 ### Build
 
-Compile the client code:
+To compile the client files into `dist/`:
 ```bash
 pnpm build
 ```
 
-The compiled output will be available in the `dist/` directory.
+### Local Injection (For development)
 
-### Local Injection
-
-To inject ArgusCord into your local Discord client:
+To inject your local dev build of ArgusCord directly into your Discord client:
 ```bash
 pnpm inject
 ```
@@ -53,6 +47,18 @@ pnpm uninject
 
 ---
 
-## License
+## 📁 Codebase Layout
 
-ArgusCord is open-source software licensed under the GPL-3.0 License.
+* `src/`: Core TypeScript source files.
+  * `src/ArgusCord.ts`: Main entry point loading the mod, custom default theme, and plugins.
+  * `src/plugins/`: 100+ toggleable user plugins.
+  * `src/components/`: Settings and settings tab UI.
+* `packages/`: Local workspace helper packages.
+  * `packages/discord-types`: TypeScript typings for Discord's internal Webpack modules.
+* `dist/`: Output folder for compiled JavaScript/CSS bundles.
+
+---
+
+## 📜 License
+
+This client mod is open-source and released under the **GPL-3.0 License**.
